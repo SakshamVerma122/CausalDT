@@ -365,9 +365,9 @@ def partition(rows, question):
     for i in rows.index:
         row = rows.loc[i, :]
         if question.match(row):
-            true_rows = true_rows.append(row)
+            true_rows = pd.concat([true_rows, pd.DataFrame([row])], ignore_index=True)
         else:
-            false_rows = false_rows.append(row)
+            false_rows = pd.concat([false_rows, pd.DataFrame([row])], ignore_index=True)
     return true_rows, false_rows
 
 
